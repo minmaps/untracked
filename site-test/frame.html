@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sonde</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 10px 12px;
+        background: #101317;
+        color: #9aa2ae;
+        font: 12px/1.5 ui-monospace, SFMono-Regular, Consolas, monospace;
+      }
+      #state {
+        color: #4ade80;
+        font-weight: 700;
+      }
+      #state.tripped {
+        color: #f87171;
+      }
+      p {
+        margin: 4px 0 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div>cadre imbriqué : <span id="state">calme</span></div>
+    <p id="last">en attente…</p>
+    <script type="module" src="frame.js"></script>
+  </body>
+</html>

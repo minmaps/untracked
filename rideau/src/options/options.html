@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Rideau — réglages</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Rideau</h1>
+      <p class="lead">
+        Rideau empêche un site de savoir que vous l'avez quitté des yeux : changement
+        d'onglet, perte de focus, souris sortie de la fenêtre, ralentissement des
+        animations en arrière-plan. Rien n'est actif tant qu'un domaine n'a pas été
+        ajouté depuis l'icône de la barre d'outils.
+      </p>
+
+      <section>
+        <h2>Réglages par défaut</h2>
+        <p class="muted">Appliqués aux prochains sites ajoutés. Les sites déjà protégés gardent leur configuration.</p>
+        <label class="field">
+          <span>Niveau</span>
+          <select id="preset"></select>
+        </label>
+        <ul id="modules" class="modules"></ul>
+      </section>
+
+      <section>
+        <h2>Sites protégés (<span id="count">0</span>)</h2>
+        <p class="muted">
+          Pour ajouter un site : ouvrez-le, cliquez sur l'icône Rideau, puis
+          « Protéger ce site ».
+        </p>
+        <table id="sites-table">
+          <thead>
+            <tr>
+              <th>Domaine</th>
+              <th>Niveau</th>
+              <th>Modules</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="sites"></tbody>
+        </table>
+        <p id="sites-empty" class="muted" hidden>Aucun site protégé pour l'instant.</p>
+      </section>
+
+      <section>
+        <h2>Sauvegarde</h2>
+        <div class="row">
+          <button id="btn-export">Exporter la configuration</button>
+          <label class="file">
+            Importer…
+            <input type="file" id="import" accept="application/json" hidden />
+          </label>
+        </div>
+        <p id="import-status" class="muted" hidden></p>
+        <button id="btn-grant" class="primary" hidden></button>
+      </section>
+
+      <p id="error" class="error" hidden></p>
+    </div>
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

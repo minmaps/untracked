@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Rideau</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Rideau</h1>
+      <p id="origin" class="origin">…</p>
+    </header>
+
+    <main id="main">
+      <section id="view-unsupported" hidden>
+        <p class="muted">
+          Cette page ne peut pas être protégée : Rideau n'agit que sur les adresses
+          <code>http://</code> et <code>https://</code>.
+        </p>
+      </section>
+
+      <section id="view-off" hidden>
+        <p class="muted">
+          Ce site n'est pas protégé. Il peut détecter que vous changez d'onglet,
+          que vous cliquez ailleurs ou que votre souris quitte la fenêtre.
+        </p>
+        <button id="btn-protect" class="primary">Protéger ce site</button>
+        <p class="fine">Brave demandera l'autorisation d'agir sur ce domaine.</p>
+      </section>
+
+      <section id="view-on" hidden>
+        <div class="status">Protégé</div>
+
+        <label class="field">
+          <span>Niveau</span>
+          <select id="preset"></select>
+        </label>
+        <p id="preset-detail" class="fine"></p>
+
+        <details id="modules-box">
+          <summary>Modules (<span id="modules-count">0</span>/8)</summary>
+          <ul id="modules"></ul>
+        </details>
+
+        <div id="reload-hint" class="hint" hidden>
+          <span>Rechargez la page pour appliquer.</span>
+          <button id="btn-reload" class="link">Recharger</button>
+        </div>
+
+        <button id="btn-forget" class="danger">Ne plus protéger ce site</button>
+      </section>
+
+      <p id="error" class="error" hidden></p>
+    </main>
+
+    <footer>
+      <button id="btn-options" class="link">Réglages par défaut et liste des sites</button>
+    </footer>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

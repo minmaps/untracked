@@ -1,0 +1,169 @@
+:root {
+  --bg: #14161a;
+  --panel: #1c1f25;
+  --line: #2b3038;
+  --text: #e8eaed;
+  --muted: #9aa2ae;
+  --accent: #7c9cff;
+  --danger: #f87171;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+h1 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.lead {
+  margin: 0 0 28px;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+section {
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  margin-bottom: 28px;
+}
+
+h2 {
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 14px;
+  max-width: 62ch;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+select,
+button {
+  font: inherit;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--text);
+  padding: 6px 12px;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: #3c434e;
+}
+
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #10131a;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+button.remove {
+  color: var(--danger);
+  padding: 3px 9px;
+  font-size: 12px;
+}
+
+.modules {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.modules li {
+  margin-bottom: 10px;
+}
+
+.modules label {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.modules input {
+  margin: 4px 0 0;
+  flex: none;
+}
+
+.modules .detail {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 0 10px 6px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+td {
+  padding: 8px 10px 8px 0;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+td.origin {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  word-break: break-all;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.file {
+  cursor: pointer;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 6px 12px;
+}
+
+.error {
+  color: var(--danger);
+}

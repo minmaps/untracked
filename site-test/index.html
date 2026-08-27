@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Séance surveillée — banc de test Rideau</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <span class="dot"></span>
+        <div>
+          <h1>Séance surveillée</h1>
+          <p>Ce site vérifie en permanence que vous êtes toujours devant votre écran.</p>
+        </div>
+      </div>
+      <div class="readout">
+        <div id="verdict" class="verdict present">Présent</div>
+        <dl>
+          <div><dt>Alertes d'absence</dt><dd id="alerts">0</dd></div>
+          <div><dt>Durée de session</dt><dd id="elapsed">0:00</dd></div>
+          <div><dt>Détecteurs actifs</dt><dd id="armed">0</dd></div>
+        </dl>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel span2">
+        <h2>Scénarios guidés</h2>
+        <p class="muted">
+          Lancez chaque scénario puis suivez la consigne. À la fin du décompte, la carte
+          indique quels détecteurs ont réagi. Extension active, tout doit rester silencieux —
+          sauf le scénario 5, voir la note en bas de page.
+        </p>
+        <div id="scenarios" class="scenarios"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Détecteurs</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Technique</th>
+              <th>État</th>
+              <th>Épisodes</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </section>
+
+      <aside class="col">
+        <section class="panel">
+          <h2>Empreinte des APIs</h2>
+          <p class="muted">Ce que le site voit des fonctions du navigateur. « remplacée » = un module de Rideau est en place.</p>
+          <ul id="fingerprint" class="fingerprint"></ul>
+        </section>
+
+        <section class="panel">
+          <h2>Sonde en iframe</h2>
+          <p class="muted">Vérifie que la protection couvre aussi les cadres imbriqués.</p>
+          <iframe src="frame.html" title="Sonde de détection en cadre imbriqué"></iframe>
+        </section>
+      </aside>
+
+      <section class="panel span2">
+        <div class="log-head">
+          <h2>Journal</h2>
+          <div class="actions">
+            <button id="btn-reset">Réinitialiser</button>
+            <button id="btn-export" class="primary">Exporter le rapport JSON</button>
+          </div>
+        </div>
+        <ol id="log" class="log"></ol>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        <strong>Note sur le scénario 5.</strong> Le minuteur d'inactivité ne dépend d'aucun
+        signal de départ : il constate seulement que la souris et le clavier ne bougent plus.
+        Rideau ne le neutralise pas — il faudrait pour cela injecter une fausse activité,
+        module volontairement écarté. Un site apprend donc que vous êtes <em>immobile</em>,
+        jamais que vous êtes <em>parti</em>.
+      </p>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
