@@ -22,8 +22,13 @@ const FILE_BY_ID = Object.fromEntries(MODULES.map((m) => [m.id, m.file]));
 // dessus entre le diff et l'ecriture.
 let chain = Promise.resolve();
 function queueApply() {
-  chain = chain.then(applyRegistrations).catch((err) => console.error('[Rideau]', err));
-  return chain;
+  // Le promise renvoye a l'appelant doit conserver l'echec : le popup peut
+  // ainsi afficher qu'une configuration n'a pas ete appliquee. La copie
+  // gardee pour la file absorbe ensuite cet echec afin que l'application
+  // suivante puisse repartir au lieu de rester bloquee sur une chaine rejetee.
+  const run = chain.then(applyRegistrations);
+  chain = run.catch((err) => console.error('[Rideau]', err));
+  return run;
 }
 
 function buildSpec(id, matches) {
@@ -80,9 +85,11 @@ async function applyRegistrations() {
   }
   const toRemove = [...existingIds].filter((id) => !wanted.has(id));
 
-  if (toRemove.length) await chrome.scripting.unregisterContentScripts({ ids: toRemove });
+  // Installer d'abord l'etat voulu. Si Chromium refuse une mise a jour, les
+  // anciens shims restent au moins en place au lieu d'avoir deja ete retires.
   if (toRegister.length) await chrome.scripting.registerContentScripts(toRegister);
   if (toUpdate.length) await chrome.scripting.updateContentScripts(toUpdate);
+  if (toRemove.length) await chrome.scripting.unregisterContentScripts({ ids: toRemove });
 }
 
 // Sans la permission "tabs", tab.url n'est lisible que sur les origines dont

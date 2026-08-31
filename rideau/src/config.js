@@ -36,7 +36,7 @@ export const MODULES = [
     id: 'mute-lifecycle',
     file: 'src/shims/mute-lifecycle.js',
     label: 'Étouffer le cycle de vie',
-    detail: "Bloque pagehide, freeze et resume ; document.wasDiscarded reste false."
+    detail: "Bloque pagehide, le pageshow de retour, freeze et resume ; document.wasDiscarded reste false."
   },
   {
     id: 'kill-idle-api',

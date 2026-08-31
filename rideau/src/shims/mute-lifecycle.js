@@ -8,9 +8,33 @@
   const swallow = (event) => {
     event.stopImmediatePropagation();
   };
-  for (const type of ['pagehide', 'freeze', 'resume']) {
+  for (const type of ['freeze', 'resume']) {
     window.addEventListener(type, swallow, true);
   }
+
+  // Une page conservee dans le back-forward cache recoit pagehide, puis un
+  // pageshow lors du retour. Masquer uniquement le depart laisserait passer un
+  // signal de reprise sans signal d'aller, incoherence directement observable.
+  // Le pageshow initial reste intact : on ne masque que celui qui repond a un
+  // pagehide effectivement intercepte dans ce meme contexte JavaScript.
+  let pageHidden = false;
+  window.addEventListener(
+    'pagehide',
+    (event) => {
+      pageHidden = true;
+      event.stopImmediatePropagation();
+    },
+    true
+  );
+  window.addEventListener(
+    'pageshow',
+    (event) => {
+      if (!pageHidden) return;
+      pageHidden = false;
+      event.stopImmediatePropagation();
+    },
+    true
+  );
 
   const d = Object.getOwnPropertyDescriptor(Document.prototype, 'wasDiscarded');
   if (d && d.configurable) {

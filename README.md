@@ -47,7 +47,7 @@ Le popup permet ensuite de choisir un niveau, ou d'activer les modules un par un
 | `spoof-focus` | `document.hasFocus()` renvoie toujours `true` |
 | `mute-focus` | bloque les `blur`/`focus` **de la fenêtre** |
 | `mute-pointer` | bloque `mouseleave`/`pointerleave` **de sortie de fenêtre** |
-| `mute-lifecycle` | bloque `pagehide`, `freeze`, `resume` |
+| `mute-lifecycle` | bloque `pagehide`, le `pageshow` de retour, `freeze`, `resume` |
 | `kill-idle-api` | fait disparaître `IdleDetector` |
 | `unthrottle` | garde `rAF` et les timers à cadence normale en arrière-plan |
 
@@ -69,7 +69,7 @@ Puis ouvrez <http://localhost:8000>. (`localhost` est un « contexte sécurisé 
 c'est ce qui rend `IdleDetector` testable — un simple `file://` ne le
 permettrait pas.)
 
-La page arme **13 détecteurs** et affiche un verdict *Présent* / *Absent*, un
+La page arme **14 détecteurs** et affiche un verdict *Présent* / *Absent*, un
 journal horodaté, et un panneau **Empreinte des APIs** qui indique directement
 quels modules sont en place.
 

@@ -204,6 +204,22 @@ DETECTORS.push(
     }
   },
   {
+    id: 'bfcache-return',
+    momentary: true,
+    name: 'Retour depuis le cache arrière/avant',
+    api: 'pageshow avec event.persisted = true',
+    module: 'mute-lifecycle',
+    start(ctx) {
+      const onShow = (event) => {
+        // Le pageshow initial a persisted=false. La valeur true identifie un
+        // contexte JavaScript restaure depuis le back-forward cache.
+        if (event.persisted) ctx.trip('pageshow de restauration BFCache');
+      };
+      window.addEventListener('pageshow', onShow);
+      return () => window.removeEventListener('pageshow', onShow);
+    }
+  },
+  {
     id: 'user-activation',
     name: 'Activation utilisateur',
     api: 'navigator.userActivation.isActive',
